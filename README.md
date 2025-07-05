@@ -21,7 +21,8 @@ A modern weather web application that provides real-time weather updates for any
 
 - **HTML5**
 - **CSS3**
-- **JavaScript (Vanilla or React)**
+- **JavaScript (React)**
+- **Node.js
 - **OpenWeatherMap API**
 - **Netlify** (for deployment)
 
