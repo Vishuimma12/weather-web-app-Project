@@ -1,12 +1,7 @@
 import { motion } from 'framer-motion';
-import { ForecastData } from '../utils/weatherApi';
 import { getWeatherIcon, capitalizeWords } from '../utils/weatherHelpers';
 
-interface ForecastCardProps {
-  forecast: ForecastData[];
-}
-
-const ForecastCard = ({ forecast }: ForecastCardProps) => {
+const ForecastCard = ({ forecast }) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {

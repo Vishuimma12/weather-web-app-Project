@@ -1,43 +1,8 @@
-export interface WeatherData {
-  name: string;
-  country: string;
-  temp: number;
-  feelsLike: number;
-  humidity: number;
-  windSpeed: number;
-  description: string;
-  main: string;
-  icon: string;
-  sunrise: number;
-  sunset: number;
-  visibility: number;
-  pressure: number;
-}
-
-export interface ForecastData {
-  date: string;
-  temp: number;
-  tempMin: number;
-  tempMax: number;
-  description: string;
-  main: string;
-  icon: string;
-  humidity: number;
-  windSpeed: number;
-}
-
-export interface LocationData {
-  lat: number;
-  lon: number;
-  name: string;
-  country: string;
-}
-
 const API_KEY = '948ff544a58a6c67440c3dc2aa8294dd';
 const BASE_URL = 'https://api.openweathermap.org/data/2.5';
 const GEO_URL = 'https://api.openweathermap.org/geo/1.0';
 
-export const getCurrentWeather = async (lat: number, lon: number): Promise<WeatherData> => {
+export const getCurrentWeather = async (lat, lon) => {
   try {
     const response = await fetch(
       `${BASE_URL}/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
@@ -70,7 +35,7 @@ export const getCurrentWeather = async (lat: number, lon: number): Promise<Weath
   }
 };
 
-export const getForecast = async (lat: number, lon: number): Promise<ForecastData[]> => {
+export const getForecast = async (lat, lon) => {
   try {
     const response = await fetch(
       `${BASE_URL}/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
@@ -83,9 +48,9 @@ export const getForecast = async (lat: number, lon: number): Promise<ForecastDat
     const data = await response.json();
     
     // Get daily forecast (one per day at 12:00)
-    const dailyData = data.list.filter((_: any, index: number) => index % 8 === 0).slice(0, 5);
+    const dailyData = data.list.filter((_, index) => index % 8 === 0).slice(0, 5);
     
-    return dailyData.map((item: any) => ({
+    return dailyData.map((item) => ({
       date: new Date(item.dt * 1000).toLocaleDateString('en-US', { 
         weekday: 'short', 
         month: 'short', 
@@ -106,7 +71,7 @@ export const getForecast = async (lat: number, lon: number): Promise<ForecastDat
   }
 };
 
-export const searchCities = async (query: string): Promise<LocationData[]> => {
+export const searchCities = async (query) => {
   try {
     if (query.length < 2) return [];
     
@@ -120,7 +85,7 @@ export const searchCities = async (query: string): Promise<LocationData[]> => {
     
     const data = await response.json();
     
-    return data.map((city: any) => ({
+    return data.map((city) => ({
       lat: city.lat,
       lon: city.lon,
       name: city.name,
@@ -132,7 +97,7 @@ export const searchCities = async (query: string): Promise<LocationData[]> => {
   }
 };
 
-export const getCurrentLocation = (): Promise<{ lat: number; lon: number }> => {
+export const getCurrentLocation = () => {
   return new Promise((resolve, reject) => {
     if (!navigator.geolocation) {
       reject(new Error('Geolocation is not supported by this browser'));

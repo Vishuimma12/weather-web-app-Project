@@ -1,12 +1,7 @@
 import { motion } from 'framer-motion';
 import { AlertCircle, RefreshCw } from 'lucide-react';
 
-interface ErrorMessageProps {
-  message: string;
-  onRetry: () => void;
-}
-
-const ErrorMessage = ({ message, onRetry }: ErrorMessageProps) => {
+const ErrorMessage = ({ message, onRetry }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

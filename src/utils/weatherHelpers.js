@@ -1,5 +1,5 @@
-export const getWeatherIcon = (condition: string, isDay: boolean = true): string => {
-  const icons: { [key: string]: string } = {
+export const getWeatherIcon = (condition, isDay = true) => {
+  const icons = {
     'Clear': isDay ? '☀️' : '🌙',
     'Clouds': '☁️',
     'Rain': '🌧️',
@@ -20,12 +20,12 @@ export const getWeatherIcon = (condition: string, isDay: boolean = true): string
   return icons[condition] || '🌤️';
 };
 
-export const getWeatherBackground = (condition: string, isDay: boolean = true): string => {
+export const getWeatherBackground = (condition, isDay = true) => {
   if (!isDay) {
     return 'from-indigo-900 via-purple-900 to-pink-900';
   }
   
-  const backgrounds: { [key: string]: string } = {
+  const backgrounds = {
     'Clear': 'from-blue-400 via-purple-400 to-pink-400',
     'Clouds': 'from-gray-400 via-gray-500 to-gray-600',
     'Rain': 'from-gray-600 via-gray-700 to-gray-800',
@@ -39,23 +39,23 @@ export const getWeatherBackground = (condition: string, isDay: boolean = true): 
   return backgrounds[condition] || 'from-blue-400 via-purple-400 to-pink-400';
 };
 
-export const isNightTime = (sunrise: number, sunset: number): boolean => {
+export const isNightTime = (sunrise, sunset) => {
   const now = Date.now() / 1000;
   return now < sunrise || now > sunset;
 };
 
-export const formatTime = (timestamp: number): string => {
+export const formatTime = (timestamp) => {
   return new Date(timestamp * 1000).toLocaleTimeString('en-US', {
     hour: '2-digit',
     minute: '2-digit',
   });
 };
 
-export const getWindDirection = (degrees: number): string => {
+export const getWindDirection = (degrees) => {
   const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
   return directions[Math.round(degrees / 45) % 8];
 };
 
-export const capitalizeWords = (str: string): string => {
+export const capitalizeWords = (str) => {
   return str.replace(/\b\w/g, (char) => char.toUpperCase());
 };

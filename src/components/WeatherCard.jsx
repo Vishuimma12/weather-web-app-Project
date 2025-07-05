@@ -8,15 +8,9 @@ import {
   Sunrise,
   Sunset
 } from 'lucide-react';
-import { WeatherData } from '../utils/weatherApi';
 import { getWeatherIcon, formatTime, capitalizeWords } from '../utils/weatherHelpers';
 
-interface WeatherCardProps {
-  weather: WeatherData;
-  isDay: boolean;
-}
-
-const WeatherCard = ({ weather, isDay }: WeatherCardProps) => {
+const WeatherCard = ({ weather, isDay }) => {
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { 

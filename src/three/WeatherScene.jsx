@@ -4,14 +4,9 @@ import { OrbitControls, Stars, Cloud } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import * as THREE from 'three';
 
-interface WeatherSceneProps {
-  condition: string;
-  isDay: boolean;
-}
-
 const Sun = () => {
-  const sunRef = useRef<THREE.Mesh>(null);
-  const lightRef = useRef<THREE.DirectionalLight>(null);
+  const sunRef = useRef(null);
+  const lightRef = useRef(null);
   
   useFrame((state) => {
     if (sunRef.current) {
@@ -46,7 +41,7 @@ const Sun = () => {
 };
 
 const Moon = () => {
-  const moonRef = useRef<THREE.Mesh>(null);
+  const moonRef = useRef(null);
   
   useFrame((state) => {
     if (moonRef.current) {
@@ -75,7 +70,7 @@ const Moon = () => {
 };
 
 const RainDrops = () => {
-  const rainRef = useRef<THREE.Group>(null);
+  const rainRef = useRef(null);
   const raindrops = useMemo(() => {
     const drops = [];
     for (let i = 0; i < 200; i++) {
@@ -113,7 +108,7 @@ const RainDrops = () => {
 };
 
 const SnowFlakes = () => {
-  const snowRef = useRef<THREE.Group>(null);
+  const snowRef = useRef(null);
   const snowflakes = useMemo(() => {
     const flakes = [];
     for (let i = 0; i < 150; i++) {
@@ -152,8 +147,8 @@ const SnowFlakes = () => {
   );
 };
 
-const WeatherScene3D = ({ condition, isDay }: WeatherSceneProps) => {
-  const cameraPosition: [number, number, number] = [0, 0, 5];
+const WeatherScene3D = ({ condition, isDay }) => {
+  const cameraPosition = [0, 0, 5];
   
   return (
     <Canvas

@@ -1,17 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, MapPin, Loader2 } from 'lucide-react';
-import { searchCities, LocationData } from '../utils/weatherApi';
+import { searchCities } from '../utils/weatherApi';
 
-interface SearchBarProps {
-  onLocationSelect: (lat: number, lon: number) => void;
-  onCurrentLocation: () => void;
-  isLoading: boolean;
-}
-
-const SearchBar = ({ onLocationSelect, onCurrentLocation, isLoading }: SearchBarProps) => {
+const SearchBar = ({ onLocationSelect, onCurrentLocation, isLoading }) => {
   const [query, setQuery] = useState('');
-  const [suggestions, setSuggestions] = useState<LocationData[]>([]);
+  const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [searchLoading, setSearchLoading] = useState(false);
 
@@ -38,7 +32,7 @@ const SearchBar = ({ onLocationSelect, onCurrentLocation, isLoading }: SearchBar
     return () => clearTimeout(searchTimeout);
   }, [query]);
 
-  const handleLocationSelect = (location: LocationData) => {
+  const handleLocationSelect = (location) => {
     setQuery(`${location.name}, ${location.country}`);
     setShowSuggestions(false);
     onLocationSelect(location.lat, location.lon);

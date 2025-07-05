@@ -9,20 +9,18 @@ import WeatherScene3D from './three/WeatherScene';
 import { 
   getCurrentWeather, 
   getForecast, 
-  getCurrentLocation, 
-  WeatherData, 
-  ForecastData 
+  getCurrentLocation
 } from './utils/weatherApi';
 import { getWeatherBackground, isNightTime } from './utils/weatherHelpers';
 
 function App() {
-  const [weather, setWeather] = useState<WeatherData | null>(null);
-  const [forecast, setForecast] = useState<ForecastData[]>([]);
+  const [weather, setWeather] = useState(null);
+  const [forecast, setForecast] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
   const [isDay, setIsDay] = useState(true);
 
-  const fetchWeatherData = async (lat: number, lon: number) => {
+  const fetchWeatherData = async (lat, lon) => {
     try {
       setLoading(true);
       setError(null);
@@ -42,7 +40,7 @@ function App() {
     }
   };
 
-  const handleLocationSelect = (lat: number, lon: number) => {
+  const handleLocationSelect = (lat, lon) => {
     fetchWeatherData(lat, lon);
   };
 
@@ -106,10 +104,10 @@ function App() {
           transition={{ duration: 0.6 }}
         >
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Weather Forecast
+            Live Weather Insights
           </h1>
           <p className="text-lg text-gray-200 mb-8">
-            Beautiful weather with immersive 3D animations
+            Real-time forecasts with stunning 3D visuals
           </p>
           
           <SearchBar 
@@ -150,7 +148,7 @@ function App() {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <p className="text-sm">
-            Powered by OpenWeatherMap API • Built with React & Three.js
+           © 2025 • Powered by OpenWeatherMap API • Developed by Vishal Singh.
           </p>
         </motion.footer>
       </div>
